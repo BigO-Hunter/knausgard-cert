@@ -51,10 +51,14 @@ theorem covered_pass : covered.all (fun p => basicF kT p.1.toArray p.2.toArray) 
 instance : Inhabited (List Nat × List Nat) := ⟨([], [])⟩
 
 section Exemplars
-/-! The first 1 covered boxes, each checked on its own line, so that a reader can copy one
+/-! The first 5 covered boxes, each checked on its own line, so that a reader can copy one
 line out and re-check a single leaf in isolation. -/
 
 theorem covered_0 : basicF kT #[44798, 17846, 17356, 17356, 17356, 29116] #[45289, 18336, 17846, 17846, 17846, 29607] = true := by decide +kernel
+theorem covered_1 : basicF kT #[44798, 17846, 17356, 17356, 16866, 29116] #[45289, 18336, 17846, 17846, 17356, 29607] = true := by decide +kernel
+theorem covered_2 : basicF kT #[44798, 17846, 17356, 16866, 17356, 29116] #[45289, 18336, 17846, 17356, 17846, 29607] = true := by decide +kernel
+theorem covered_3 : basicF kT #[44798, 17846, 17356, 16866, 16866, 29116] #[45289, 18336, 17846, 17356, 17356, 29607] = true := by decide +kernel
+theorem covered_4 : basicF kT #[44798, 17846, 16866, 17356, 17356, 29116] #[45289, 18336, 17356, 17846, 17846, 29607] = true := by decide +kernel
 
 end Exemplars
 

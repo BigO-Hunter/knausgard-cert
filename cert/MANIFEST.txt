@@ -7,8 +7,8 @@ selection.json                                         sha256=610e63f0af9db593bb
 cert/Table.lean                                        sha256=d35fafee1a3addf76782524a3c5cb724e071857397c504a2c5f93c1dae6ebeb3
 cert/Defs.lean                                         sha256=19446a4bba8864001fc22ab64658a4d2b29500e1761687acc7d65a2de629f483
 cert/Spot.lean                                         sha256=aef2a40f2e91a3ad350246421299035e9414cbeb6774047b2fd81c1efd1abaef
-cert/Partial.lean                                      sha256=ad05b11806d4810596f54d857281e8867191ca2d0893f2bd969c1bf28448d2d0
-PARTIAL_CERT.lean (= cert/Partial.lean)                sha256=ad05b11806d4810596f54d857281e8867191ca2d0893f2bd969c1bf28448d2d0
+cert/Partial.lean                                      sha256=8f86b54fbc07c9106d4ec7433fcfda0eee92365531bb5e0b99efff92cc60e487
+PARTIAL_CERT.lean (= cert/Partial.lean)                sha256=8f86b54fbc07c9106d4ec7433fcfda0eee92365531bb5e0b99efff92cc60e487
 
 boxes               5 of 21157274 accepted basic-test boxes (2.363e-07)
 budget reads        137260 (cap 30000 per box)
