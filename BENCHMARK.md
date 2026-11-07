@@ -136,8 +136,9 @@ same accessor would be needed and the same 10²-year wall applies.
 ## 7b. A second wall: memory (found while checking the certificate)
 
 `decide +kernel` retains the reduction terms of every table read until the theorem ends: one accepted
-box of the cheapest class (15 200 reads) peaked at **6.3 GB RSS** and was killed at 61 s; the
-27 452-read class needs 7 GB. That is ~0.4 MB per read, and it is *not* fixed by a cheaper accessor
+box of the cheapest class (15 200 reads) was killed at **6.3 GB / 61 s** on one attempt and at
+**9.3 GB / 152 s** on a retry (the ceiling moves with host memory pressure); the 27 452-read class
+needs 7 GB or more. That is ~0.4 MB per read, and it is *not* fixed by a cheaper accessor
 (the retention is per unfold). Practical consequence: **one accepted box of his cover per ~6 GB of
 RAM**, and no accepted box (min 15 190 reads) could be checked to completion here. His own four spot
 boxes (224 reads each) do check — `cert/Spot.lean`, verified.

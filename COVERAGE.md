@@ -78,7 +78,7 @@ can run `tools/select_leaves.py 1000000 1 cert/sel1m.json` and
 | what | reads | kernel result on this host |
 |---|---|---|
 | his four spot boxes (`cert/Spot.lean`) | 224 each | **verified** (`lean cert/Spot.lean`, ~7 s CPU for all four) |
-| one accepted box, cheapest class (`[245,246,245,245,245,490]`, 15 200 reads) | 15 200 | **killed** at 61 s, **6.3 GB peak RSS** |
+| one accepted box, cheapest class (`[245,246,245,245,245,490]`, 15 200 reads) | 15 200 | **killed**: 61 s / 6.3 GB on the first attempt, 152 s / 9.3 GB on a retry (the ceiling moves with host pressure) |
 | one accepted box, cheapest *balanced* class (27 452 reads) | 27 452 | **killed** at 60 s, **6.9 GB peak RSS** |
 | the 5-box certificate (`cert/Partial.lean`) | 137 260 (×2 with the aggregate) | **not completed**: the host kills the process at ~6 GB |
 
