@@ -9,8 +9,9 @@ like, so that nobody reads the certificate as a discharge of the axiom.
 
 | | |
 |---|---|
-| theorem | `Cert.covered_pass : covered.all (fun p => basicF kT p.1.toArray p.2.toArray) = true` |
+| theorem (intended) | `Cert.covered_pass : covered.all (fun p => basicF kT p.1.toArray p.2.toArray) = true` |
 | plus | 5 per-box theorems `covered_0 … covered_4` (each box checkable on its own line) |
+| status | generated and type-checked; the kernel check did **not** complete on this host — see "Status of the kernel check" below (memory wall) |
 | plus | `Cert.spot_lattice`, `spot_double`, `spot_corner`, `spot_vacancy` — the author's four own kernel-checked boxes, re-proved through the new accessor (fidelity check) |
 | table | `certificate/kernel_lower.bin`, 209 010 entries, sha256 `b80e5a8c…cded36`, read as `Cert.kT` |
 | arithmetic | verbatim copy of his `Distinct839/Local/Checker.lean` + `minF`/`mkEdgeF`/`edgesF`/`basicF` from `Local/Spot.lean` |
@@ -71,6 +72,27 @@ kernel time on this loaded host) because the marginal value of a second order of
 coverage is ~10 orders of magnitude of region — i.e. nothing. Anyone who wants the 10⁶-read version
 can run `tools/select_leaves.py 1000000 1 cert/sel1m.json` and
 `tools/gen_partial.py cert/sel1m.json cert/Partial1M.lean`; it will verify in ~1.7 h on this host.
+
+## Status of the kernel check (measured, not assumed)
+
+| what | reads | kernel result on this host |
+|---|---|---|
+| his four spot boxes (`cert/Spot.lean`) | 224 each | **verified** (`lean cert/Spot.lean`, ~7 s CPU for all four) |
+| one accepted box, cheapest class (`[245,246,245,245,245,490]`, 15 200 reads) | 15 200 | **killed** at 61 s, **6.3 GB peak RSS** |
+| one accepted box, cheapest *balanced* class (27 452 reads) | 27 452 | **killed** at 60 s, **6.9 GB peak RSS** |
+| the 5-box certificate (`cert/Partial.lean`) | 137 260 (×2 with the aggregate) | **not completed**: the host kills the process at ~6 GB |
+
+So the binding constraint is **memory, not only time**: `decide +kernel` retains the reduction terms
+of every table read, at roughly 0.4 MB per read, i.e. **one accepted box per ~6 GB of RAM**. Every
+box in his cover costs at least 15 190 reads = ~6.3 GB, so *no* box of his branch and bound could be
+checked to completion in this session on this host — the certificate is generated, type-checked and
+ready, and its per-box theorems (`covered_0 … covered_4`) are each one line that verifies in ~95 s on
+a host that will give the process ~7 GB.
+
+This memory wall is itself a result worth reporting: it is invisible in the read-count arithmetic,
+it does not improve with a faster accessor (the copy is per unfold), and it puts the *minimum* unit
+of a kernel-checked cover at one accepted box per 6 GB of RAM — 21 157 274 boxes would need the
+reduction terms of ~10⁵ boxes' worth of RAM even if time were free.
 
 ## What would have to be true for a real certificate
 

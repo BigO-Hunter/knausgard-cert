@@ -133,6 +133,15 @@ same accessor would be needed and the same 10²-year wall applies.
    smaller-leaf tree was not tried. Given the measured per-unfold cost (~1.8 ms) and the ~180 steps,
    the plausible best is ~1–2 ms per read — a 3–6× gain on §2, not the 10³ needed.
 
+## 7b. A second wall: memory (found while checking the certificate)
+
+`decide +kernel` retains the reduction terms of every table read until the theorem ends: one accepted
+box of the cheapest class (15 200 reads) peaked at **6.3 GB RSS** and was killed at 61 s; the
+27 452-read class needs 7 GB. That is ~0.4 MB per read, and it is *not* fixed by a cheaper accessor
+(the retention is per unfold). Practical consequence: **one accepted box of his cover per ~6 GB of
+RAM**, and no accepted box (min 15 190 reads) could be checked to completion here. His own four spot
+boxes (224 reads each) do check — `cert/Spot.lean`, verified.
+
 ## 8. Reproduce
 
 ```bash

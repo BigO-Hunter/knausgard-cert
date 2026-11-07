@@ -10,6 +10,10 @@ cert/Spot.lean                                         sha256=aef2a40f2e91a3ad35
 cert/Partial.lean                                      sha256=8f86b54fbc07c9106d4ec7433fcfda0eee92365531bb5e0b99efff92cc60e487
 PARTIAL_CERT.lean (= cert/Partial.lean)                sha256=8f86b54fbc07c9106d4ec7433fcfda0eee92365531bb5e0b99efff92cc60e487
 
+STATUS of the kernel check: NOT COMPLETED on this host -- one accepted box needs ~6 GB RSS
+(decide +kernel retains every read's reduction terms; two attempts killed at ~6.1-6.3 GB).
+His four spot boxes DO kernel-check (cert/Spot.lean, verified). See COVERAGE.md.
+
 boxes               5 of 21157274 accepted basic-test boxes (2.363e-07)
 budget reads        137260 (cap 30000 per box)
 covered volume      69489199494050000 of 55120932172281490656344867683369 = 1.260668e-15

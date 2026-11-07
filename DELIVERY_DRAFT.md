@@ -52,22 +52,28 @@ kernel replay of Axiom 1 remains out of reach, and Axioms 2 and 3 are worse (28 
 table, 267 M / 286 M accepted boxes). This is not a criticism of your proof; it is the number that
 tells us what the trust reduction would cost.
 
-## 3. What I could check: a partial certificate
+## 3. What the kernel *can* check here, and the second wall (memory)
 
-Using your arithmetic verbatim (a copy of `Distinct839/Local/Checker.lean` plus `minF`, `mkEdgeF`,
-`edgesF`, `basicF` from `Local/Spot.lean`, unmodified, Apache-2.0), your table as the accessor above,
-and boxes taken from *your* verifier's accepted set, the file `cert/Partial.lean` proves by
-`decide +kernel`:
+Two things are true at once, and I would rather state both than oversell.
 
-* `covered_pass : covered.all (fun p => basicF kT p.1.toArray p.2.toArray) = true`
-* and, as a fidelity check, your four spot boxes re-proved through the new accessor
-  (`cert/Spot.lean`: `spot_lattice`, `spot_double`, `spot_corner`, `spot_vacancy`).
+**What checked.** Your four spot boxes, re-proved through the new accessor —
+`cert/Spot.lean`: `spot_lattice`, `spot_double`, `spot_corner`, `spot_vacancy`, each
+`basicF kT … = true` by `decide +kernel`, about 1.5 s of CPU each (224 table reads per box). That is
+also the fidelity check on my side: the table and the checker arithmetic agree with yours on your own
+ground truth.
 
-The certificate covers **5 boxes of 21 157 274 (2.4×10⁻⁷ of the leaves) and ~1.4×10⁻¹⁴ of the volume
-of the root box**. I want to state that plainly: it is a pilot that shows the machinery works
-end-to-end on your data, **not** a discharge of the axiom. Everything outside those five boxes is
-still exactly the trust you already record in
-`Distinct839.Local.check_passes._native.native_decide.ax_1_1`.
+**What did not check, and why.** I generated the certificate for accepted boxes of your search
+(taken from your verifier, ranked by volume per read) but could not get a single accepted box through
+the kernel on my machine: **`decide +kernel` retains the reduction terms of every table read**, at
+~0.4 MB per read. The cheapest box in your cover (`[245,246,245,245,245,490]`, 15 200 reads) peaked
+at **6.3 GB RSS** and was killed at 61 s; the 27 452-read class needs 7 GB. So the practical unit of a
+kernel-checked cover is **one accepted box per ~6 GB of RAM**, and every box costs at least 15 190
+reads. That is a new wall, invisible in the read-count arithmetic and not removed by a faster
+accessor (the retention is per unfold).
+
+If the certificate is of interest, `cert/Partial.lean` is generated and type-checked, with one
+theorem per covered box so a machine with more headroom can check them one at a time; I would be glad
+to run it on a bigger host and send the result rather than assert it.
 
 ## 4. What might actually help you
 

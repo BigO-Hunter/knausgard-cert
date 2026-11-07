@@ -30,8 +30,11 @@ Companion to `../knausgard-audit/` (read that first: `AXIOM_MAP.md`, `CERT_DESIG
 - **Reads per accepted box: min 15,190, median 36,270** — not the audit's 56 (his search never
   accepts a width-1 box; the affine test exists for width ≤ 512). Whole accepted basic-test cover:
   **1.14×10¹² reads ⇒ 224 years** at 6.2 ms/read, 10.9 years at a 20× faster host.
-- **Partial certificate**: 5 of his accepted boxes, kernel-checked, **1.4×10⁻¹⁴ of the root box's
-  volume** (9×10⁻⁷ of the box count) — the honest statement of what a fixed budget buys.
+- **Partial certificate**: 5 of his accepted boxes, **1.26×10⁻¹⁵ of the root box's volume**
+  (2.4×10⁻⁷ of the box count) — the honest statement of what a fixed budget buys. Its kernel check did
+  not complete on this host: one accepted box needs ~6 GB RSS (`decide +kernel` retains every read's
+  reduction terms) and the process is killed at ~6 GB. His four spot boxes *do* kernel-check through
+  the new accessor.
 
 ## Reproduce
 
@@ -45,4 +48,7 @@ used, with `tools/patch_dump.py`, as the box generator.)
 
 ## Status
 
-Measurement done; certificate pilot done; nothing posted, nothing public; delivery note drafted only.
+Measurement done. Certificate machinery done (his arithmetic + accessor + generator + fidelity
+check); the certificate itself is generated but its kernel check is blocked by the measured ~6 GB
+memory wall on this host — stated as such in `COVERAGE.md`, not implied otherwise. Nothing posted,
+nothing public; the delivery note is a draft only.
