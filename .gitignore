@@ -1,0 +1,17 @@
+# upstream clone (18 MB) -- re-clone with: git clone --depth 1 https://github.com/kristianmk/839 upstream
+upstream/
+# compiled artifacts
+*.olean
+*.ilean
+*.c
+bench/olean/
+cert/*.olean
+lean-toolchain
+# big benchmark inputs/probes (regenerate with tools/gen_bench.py)
+bench/probes/repD_100000.lean
+bench/probes/repB_0.lean
+bench/probes/repD_0.lean
+bench/probes/repC_0.lean
+# dumps (regenerate with tools/patch_dump.py + tools/verify_dump)
+leaves_*.txt
+tools/verify_dump

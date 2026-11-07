@@ -1,0 +1,4 @@
+bench/defs/RepD.lean:210:4: error(lean.dependsOnNoncomputable): failed to compile definition, consider marking it as 'noncomputable' because it depends on 'tabD', which is 'noncomputable'
+real 223.22
+user 93.21
+sys 34.29

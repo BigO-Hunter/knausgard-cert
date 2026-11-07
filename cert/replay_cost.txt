@@ -1,0 +1,7 @@
+accepted basic-test boxes: 21157274
+total reads for the whole accepted cover: 1142293396938
+mean reads/box: 53990.57538972176 min: 15190 max: 1599524
+median reads/box (1-in-1000 sample): 36270
+replay at measured 6.2 ms/read (loaded machine): 224 years
+replay at 20x faster, hypothetical idle machine: 10.9 years
+replay at the audit assumption 1e-6 s/read: 0.0362 years

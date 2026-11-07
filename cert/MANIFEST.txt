@@ -1,0 +1,22 @@
+KNAUSGARD AXIOM-1 PARTIAL-CERTIFICATE MANIFEST
+upstream            github.com/kristianmk/839 @ b280d51bef5ab32b3280b0955d040085ed522d59
+table               upstream/certificate/kernel_lower.bin  entries=209010  sha256=b80e5a8c70e4beb3b872dada426016bc97b0954c1a8a5eabaeb40fba49cded36
+table in inputs.json                                       sha256=b80e5a8c70e4beb3b872dada426016bc97b0954c1a8a5eabaeb40fba49cded36
+box list (canonical text, 5 boxes, 'lo hi' per line)  sha256=56b8242b8a06fd7cad60097f820e7626d52dd64513d44ed46aac1a2fddb43856
+selection.json                                         sha256=610e63f0af9db593bbc87d1225310584e925928f902f4e7513927cc2832b4994
+cert/Table.lean                                        sha256=d35fafee1a3addf76782524a3c5cb724e071857397c504a2c5f93c1dae6ebeb3
+cert/Defs.lean                                         sha256=19446a4bba8864001fc22ab64658a4d2b29500e1761687acc7d65a2de629f483
+cert/Spot.lean                                         sha256=aef2a40f2e91a3ad350246421299035e9414cbeb6774047b2fd81c1efd1abaef
+cert/Partial.lean                                      sha256=ad05b11806d4810596f54d857281e8867191ca2d0893f2bd969c1bf28448d2d0
+PARTIAL_CERT.lean (= cert/Partial.lean)                sha256=ad05b11806d4810596f54d857281e8867191ca2d0893f2bd969c1bf28448d2d0
+
+boxes               5 of 21157274 accepted basic-test boxes (2.363e-07)
+budget reads        137260 (cap 30000 per box)
+covered volume      69489199494050000 of 55120932172281490656344867683369 = 1.260668e-15
+
+covered boxes (lo | hi, gaps in units of 1/16384):
+  44798 17846 17356 17356 17356 29116 | 45289 18336 17846 17846 17846 29607   (reads 27452)
+  44798 17846 17356 17356 16866 29116 | 45289 18336 17846 17846 17356 29607   (reads 27452)
+  44798 17846 17356 16866 17356 29116 | 45289 18336 17846 17356 17846 29607   (reads 27452)
+  44798 17846 17356 16866 16866 29116 | 45289 18336 17846 17356 17356 29607   (reads 27452)
+  44798 17846 16866 17356 17356 29116 | 45289 18336 17356 17846 17846 29607   (reads 27452)

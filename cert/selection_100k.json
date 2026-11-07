@@ -1,0 +1,11 @@
+{
+ "root_side": 195083,
+ "root_volume": 55120932172281490656344867683369,
+ "budget_reads": 100000,
+ "used_reads": 0,
+ "boxes": 0,
+ "covered_volume": 0,
+ "covered_fraction": 0.0,
+ "pool_size": 21157274,
+ "chosen": []
+}
