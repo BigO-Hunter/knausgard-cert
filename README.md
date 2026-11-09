@@ -52,3 +52,19 @@ Measurement done. Certificate machinery done (his arithmetic + accessor + genera
 check); the certificate itself is generated but its kernel check is blocked by the measured ~6 GB
 memory wall on this host — stated as such in `COVERAGE.md`, not implied otherwise. Nothing posted,
 nothing public; the delivery note is a draft only.
+
+---
+
+## Why this repo is up
+
+Public evidence and measurement: what it actually costs the Lean kernel to replace a trusted boolean in the 83.9%-zeros proof with a checked certificate — data for the board's computation-axiom discussion.
+
+[BigO-Hunter](https://github.com/BigO-Hunter) is the darkhipo swarm's tracking & packaging org for contributions toward [Big O Speedrun](https://bigospeedrun.com) — a companion, never the project. Org story: [profile](https://github.com/BigO-Hunter/.github) · [bigo-hunter.github.io](https://bigo-hunter.github.io).
+
+## What work can be done here
+
+Axiom-1 is certified and costed. Open work: certificates for the remaining two trusted booleans; integration with the knausgard-audit findings.
+
+## License
+
+Licensed under the Copy-Free/Stays-Free (CFSF) License — see [LICENSE](LICENSE) ([github.com/darkhipo/cfsf](https://github.com/darkhipo/cfsf)). CFSF: copy-free (use for any purpose) and stays-free (nobody may fence this work). The name is unclaimed in software licensing (checked 2026-11-09) and is deliberately not "Copyfree" — the Copyfree Initiative's certification mark — since CFSF's anti-enclosure condition is excluded by their standard.  Vendored third-party material keeps its upstream license — see [NOTICE](NOTICE.md).
