@@ -68,3 +68,7 @@ Axiom-1 is certified and costed. Open work: certificates for the remaining two t
 ## License
 
 Licensed under the Copy-Free/Stays-Free (CFSF) License — see [LICENSE](LICENSE) ([github.com/darkhipo/cfsf](https://github.com/darkhipo/cfsf)). CFSF: copy-free (use for any purpose) and stays-free (nobody may fence this work). The name is unclaimed in software licensing (checked 2026-11-09) and is deliberately not "Copyfree" — the Copyfree Initiative's certification mark — since CFSF's anti-enclosure condition is excluded by their standard.  Vendored third-party material keeps its upstream license — see [NOTICE](NOTICE.md).
+
+## Audit lane
+
+`audit/` contains the complete original `knausgard-audit` repository at `b6376d943444`, merged with full history: the three computation-axioms mapped, classified and costed for the Knausgard 83.9%-distinct-zeros proof. This is supporting audit evidence for the certificate package, not a separate repository or a stronger coverage claim.
