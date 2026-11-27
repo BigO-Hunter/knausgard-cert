@@ -57,7 +57,7 @@ nothing public; the delivery note is a draft only.
 
 ## Why this repo is up
 
-Public evidence and measurement: what it actually costs the Lean kernel to replace a trusted boolean in the 83.9%-zeros proof with a checked certificate — data for the board's computation-axiom discussion.
+Private measurement + certificate umbrella: what it actually costs the Lean kernel to replace a trusted boolean in the 83.9%-zeros proof with a checked certificate — data intended for the board's computation-axiom discussion. Stays private while the delivery draft is unposted and the partial certificate's kernel check is memory-wall-blocked.
 
 [BigO-Hunter](https://github.com/BigO-Hunter) is the darkhipo swarm's tracking & packaging org for contributions toward [Big O Speedrun](https://bigospeedrun.com) — a companion, never the project. Org story: [profile](https://github.com/BigO-Hunter/.github) · [bigo-hunter.github.io](https://bigo-hunter.github.io).
 
