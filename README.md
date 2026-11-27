@@ -6,7 +6,7 @@ critical line"* (arXiv:2610.08965, repo `github.com/kristianmk/839`, upstream co
 `b280d51bef5ab32b3280b0955d040085ed522d59`). His proof stands; this repo asks only what it costs the
 **Lean kernel** to replace one of his three trusted booleans with a checked certificate.
 
-Companion to `../knausgard-audit/` (read that first: `AXIOM_MAP.md`, `CERT_DESIGN.md`).
+Companion audit: `audit/` (read first: `AXIOM_MAP.md`, `CERT_DESIGN.md`).
 
 ## Read in this order
 
@@ -48,18 +48,16 @@ used, with `tools/patch_dump.py`, as the box generator.)
 
 ## Status
 
-Measurement done. Certificate machinery done (his arithmetic + accessor + generator + fidelity
-check); the certificate itself is generated but its kernel check is blocked by the measured ~6 GB
-memory wall on this host — stated as such in `COVERAGE.md`, not implied otherwise. Nothing posted,
-nothing public; the delivery note is a draft only.
+Measurement done. Certificate machinery done (his arithmetic + accessor + generator +
+fidelity check); the certificate itself is generated but its kernel check is blocked
+by the measured ~6 GB memory wall on this host — stated as such in `COVERAGE.md`.
+The delivery note (`DELIVERY_DRAFT.md`) is a draft; nothing has been posted upstream.
 
----
+## Audit lane
 
-## Why this repo is up
-
-Private measurement + certificate umbrella: what it actually costs the Lean kernel to replace a trusted boolean in the 83.9%-zeros proof with a checked certificate — data intended for the board's computation-axiom discussion. Stays private while the delivery draft is unposted and the partial certificate's kernel check is memory-wall-blocked.
-
-[BigO-Hunter](https://github.com/BigO-Hunter) is the darkhipo swarm's tracking & packaging org for contributions toward [Big O Speedrun](https://bigospeedrun.com) — a companion, never the project. Org story: [profile](https://github.com/BigO-Hunter/.github) · [bigo-hunter.github.io](https://bigo-hunter.github.io).
+`audit/` — the complete `knausgard-audit` repository (@ `b6376d943444`): the three
+computation-axioms mapped, classified and costed for the Knausgård 83.9%-distinct-zeros
+proof; supporting audit evidence for the certificate package.
 
 ## What work can be done here
 
@@ -67,8 +65,6 @@ Axiom-1 is certified and costed. Open work: certificates for the remaining two t
 
 ## License
 
-Licensed under the Copy-Free/Stays-Free (CFSF) License — see [LICENSE](LICENSE) ([github.com/darkhipo/cfsf](https://github.com/darkhipo/cfsf)). CFSF: copy-free (use for any purpose) and stays-free (nobody may fence this work). The name is unclaimed in software licensing (checked 2026-11-09) and is deliberately not "Copyfree" — the Copyfree Initiative's certification mark — since CFSF's anti-enclosure condition is excluded by their standard.  Vendored third-party material keeps its upstream license — see [NOTICE](NOTICE.md).
+Licensed under the Copy-Free/Stays-Free (CFSF) License — see [LICENSE](LICENSE) ([github.com/darkhipo/cfsf](https://github.com/darkhipo/cfsf)). CFSF: copy-free (use for any purpose) and stays-free (nobody may fence this work). Vendored third-party material keeps its upstream license — see [NOTICE](NOTICE.md).
 
-## Audit lane
-
-`audit/` contains the complete original `knausgard-audit` repository at `b6376d943444`, merged with full history: the three computation-axioms mapped, classified and costed for the Knausgard 83.9%-distinct-zeros proof. This is supporting audit evidence for the certificate package, not a separate repository or a stronger coverage claim.
+Part of [BigO-Hunter](https://github.com/BigO-Hunter) — independent verification and packaging for [Big O Speedrun](https://bigospeedrun.com) · [org profile](https://github.com/BigO-Hunter/.github) · [bigo-hunter.github.io](https://bigo-hunter.github.io).
