@@ -1,6 +1,6 @@
 # BENCHMARK — the pivotal measurement: what one kernel table read costs
 
-The audit (`../knausgard-audit/CERT_DESIGN.md` §2–3) reduced the whole certificate programme to one
+The audit (`audit/CERT_DESIGN.md` §2–3) reduced the whole certificate programme to one
 unknown number: **seconds per kernel read of the 209010-entry table**. At the paper's figure (0.1 s)
 a full kernel replay of Axiom 1 costs ~5 years; the audit projected ~28 minutes if a better accessor
 brought the read to ~1 µs. This document measures it.
@@ -14,7 +14,7 @@ the only artifact that exists, and its coverage is reported honestly in `COVERAG
 ## 1. What was measured, and how
 
 All numbers are **CPU seconds** (`user`+`sys` of `/usr/bin/time -p`), not wall clock, because the
-host was running other agents' Lean builds throughout (load average 180–450 — see §7). Each figure
+host was running concurrent Lean builds throughout (load average 180–450 — see §7). Each figure
 is the *marginal* cost: a file of `n` probe theorems minus the same file with `n = 0`, divided by
 `n`. Probes are of the form
 
@@ -27,7 +27,7 @@ so the reduction is performed by **the kernel**, exactly as in the author's own 
 probe was used as a control in every representation: it fails (`decide proved that the proposition
 … is false`), which proves the reduction is actually executed and not skipped.
 
-Toolchain: Lean `v4.33.0-rc2` (`~/.elan/toolchains/leanprover--lean4---v4.33.0-rc2`), the version
+Toolchain: Lean `v4.33.0-rc2` (via elan; pinned in `lean-toolchain`), the version
 his `lean/README.md` names for the development. Data: `certificate/kernel_lower.bin` from
 `github.com/kristianmk/839` @ `b280d51bef5ab32b3280b0955d040085ed522d59`, 209010 little-endian
 `uint32`, sha256 `b80e5a8c…cded36` = `inputs.json → table_sha256` (verified). Scripts:
@@ -118,7 +118,7 @@ same accessor would be needed and the same 10²-year wall applies.
 
 ## 7. Caveats, stated plainly
 
-1. **The host was loaded** (load average 180–450 from other agents' Lean builds). CPU time is the
+1. **The host was loaded** (load average 180–450 from concurrent Lean builds). CPU time is the
    metric, so scheduling does not inflate it, but cache/memory-bandwidth contention does. Expect a
    quiet machine to be perhaps 5–20× faster; the table in §5 shows the conclusion survives a 20×
    speedup, and a 10⁴× speedup would be needed to reach the audit's 28 minutes.
@@ -146,7 +146,8 @@ boxes (224 reads each) do check — `cert/Spot.lean`, verified.
 ## 8. Reproduce
 
 ```bash
-cd ~/bigo-campaign/knausgard-cert
+# from the repo root; upstream clone required (see PROVENANCE.md):
+#   git clone --depth 1 https://github.com/kristianmk/839 upstream
 python3 tools/gen_bench.py  def A|B|C|D|E    # definition files
 python3 tools/gen_bench.py  probe A 4000     # 4000 kernel reads
 lean -o bench/olean/RepA.olean bench/defs/RepA.lean

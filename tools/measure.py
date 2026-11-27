@@ -3,7 +3,7 @@
 import subprocess, sys, os, time, json
 from pathlib import Path
 
-PLAY = Path.home() / "bigo-campaign" / "knausgard-cert"
+PLAY = Path(__file__).resolve().parent.parent
 ENV = dict(os.environ, LEAN_PATH=str(PLAY / "bench" / "olean"))
 
 

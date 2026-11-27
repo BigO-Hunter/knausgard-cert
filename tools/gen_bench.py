@@ -13,11 +13,11 @@ Reps (same 209010 integers from certificate/kernel_lower.bin, except A which is 
 Probe theorem: `<access i> = <value> := by decide +kernel`  (kernel, not compiler)
 Marginal kernel cost = (t(N2) - t(N1)) / (N2 - N1), def and imports paid once.
 """
-import struct, sys, random
+import os, struct, sys, random
 from pathlib import Path
 
-PLAY = Path.home() / "bigo-campaign" / "knausgard-cert"
-UP = PLAY / "upstream"
+PLAY = Path(__file__).resolve().parent.parent
+UP = Path(os.environ.get("KNAUSGARD_UPSTREAM", str(PLAY / "upstream")))
 OUT = PLAY / "bench"
 (OUT / "defs").mkdir(parents=True, exist_ok=True)
 (OUT / "probes").mkdir(parents=True, exist_ok=True)

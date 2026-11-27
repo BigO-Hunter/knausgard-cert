@@ -108,7 +108,7 @@ reduction terms of ~10⁵ boxes' worth of RAM even if time were free.
    analytic majorant per box, no table reads) remains the only path to a human-readable case count.
    Nothing in this work changes that recommendation — it strengthens it.
 
-## Honest summary for the delivery note
+## Honest summary
 
 > We measured what the kernel charges for the author's table (his 0.1 s figure is an underestimate
 > by ~6 orders for the array shape; a tree accessor brings a read to ~6 ms) and replayed 5 of his

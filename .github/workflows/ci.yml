@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      LEAN_NUM_THREADS: 2
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      # This repo is core-Lean-only with no Lake package (flat cert/*.lean checked
+      # directly with `lean`), so leanprover/lean-action does not apply — its config
+      # step requires lake-manifest.json. Install elan the same way lean-action does;
+      # the toolchain itself is pinned in lean-toolchain (v4.33.0-rc2).
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Lean version (installs the pinned toolchain)
+        run: lean --version
+
+      - name: Table sha256 pin (cert/MANIFEST.txt)
+        run: echo "d35fafee1a3addf76782524a3c5cb724e071857397c504a2c5f93c1dae6ebeb3  cert/Table.lean" | sha256sum -c -
+
+      # Fidelity check: his checker arithmetic + the table accessor + his four own
+      # spot boxes re-checked through the accessor, all by `decide +kernel`.
+      # cert/Partial.lean is deliberately NOT checked here: its kernel check retains
+      # ~0.4 MB of reduction terms per table read and needs ~7 GB RAM per accepted
+      # box (the measured memory wall — see COVERAGE.md). Run it on a bigger host.
+      - name: Kernel fidelity check
+        run: ./cert/verify.sh
+
+      - name: Python tools compile
+        run: python3 -m py_compile tools/*.py

@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Choose the certificate's boxes from the author's own accepted boxes, and build the coverage curve.
 
-Source: /tmp/leaves_all.txt -- every box his reference verifier accepted with the span or basic test
-(21,157,274 lines, from his verify.cpp instrumented by tools/patch_dump.py; stock counts match
-certificate/cpp_verification.json exactly).
+Source: leaves_all.txt (path given as the 4th argument, default ./leaves_all.txt) -- every box his
+reference verifier accepted with the span or basic test (21,157,274 lines, from his verify.cpp
+instrumented by tools/patch_dump.py; stock counts match certificate/cpp_verification.json exactly).
+Generate it by building tools/verify_dump.cpp (see tools/patch_dump.py) and running it with KDUMP
+set; the dump is one accepted box per line, twelve integers (lo then hi).
 
 Cost model (his own, not a guess): `basicF` reads, for each of the 21 pairs, the cells of the pair's
 distance span. Summed over pairs, gap r is read (r+1)(6-r) times, so
@@ -32,7 +34,7 @@ KCERT = 5000
 def main():
     budget, min_boxes = int(sys.argv[1]), int(sys.argv[2])
     out = Path(sys.argv[3])
-    src = Path(sys.argv[4]) if len(sys.argv) > 4 else Path("/tmp/leaves_all.txt")
+    src = Path(sys.argv[4]) if len(sys.argv) > 4 else Path("leaves_all.txt")
     cap = max(budget // max(1, min_boxes), 1)
     heap_c, heap_k = [], []
     total = 0

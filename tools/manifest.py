@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Write cert/MANIFEST.txt: hash-pins for the certificate's data (table, box list, Lean files)."""
-import hashlib, json, subprocess
+import hashlib, json, os, subprocess
 from pathlib import Path
 
-PLAY = Path.home() / "bigo-campaign" / "knausgard-cert"
+PLAY = Path(__file__).resolve().parent.parent
+UP = Path(os.environ.get("KNAUSGARD_UPSTREAM", str(PLAY / "upstream")))
 CERT = PLAY / "cert"
 
 
@@ -16,7 +17,7 @@ canon = "\n".join(f"{','.join(map(str, b['lo']))} {','.join(map(str, b['hi']))}"
 lines = [
     "KNAUSGARD AXIOM-1 PARTIAL-CERTIFICATE MANIFEST",
     "upstream            github.com/kristianmk/839 @ b280d51bef5ab32b3280b0955d040085ed522d59",
-    f"table               upstream/certificate/kernel_lower.bin  entries={209010}  sha256={sha(PLAY/'upstream/certificate/kernel_lower.bin')}",
+    f"table               upstream/certificate/kernel_lower.bin  entries={209010}  sha256={sha(UP/'certificate/kernel_lower.bin')}",
     f"table in inputs.json                                       sha256=b80e5a8c70e4beb3b872dada426016bc97b0954c1a8a5eabaeb40fba49cded36",
     f"box list (canonical text, {len(sel['chosen'])} boxes, 'lo hi' per line)  sha256={hashlib.sha256((canon + chr(10)).encode()).hexdigest()}",
     f"selection.json                                         sha256={sha(CERT/'selection.json')}",

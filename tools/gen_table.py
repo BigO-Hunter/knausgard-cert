@@ -7,11 +7,12 @@ Values are byte-identical to the table the author's kernel table holds: sha256 o
 kernel_lower.bin = b80e5a8c70e4beb3b872dada426016bc97b0954c1a8a5eabaeb40fba49cded36, which is
 inputs.json -> table_sha256 and the hash his build_kernel.py wrote.
 """
-import struct, hashlib, sys
+import os, struct, hashlib, sys
 from pathlib import Path
 
-PLAY = Path.home() / "bigo-campaign" / "knausgard-cert"
-BIN = PLAY / "upstream" / "certificate" / "kernel_lower.bin"
+PLAY = Path(__file__).resolve().parent.parent
+UP = Path(os.environ.get("KNAUSGARD_UPSTREAM", str(PLAY / "upstream")))
+BIN = UP / "certificate" / "kernel_lower.bin"
 SHA = "b80e5a8c70e4beb3b872dada426016bc97b0954c1a8a5eabaeb40fba49cded36"
 VALS = list(struct.unpack("<209010I", BIN.read_bytes()))
 N = len(VALS)

@@ -8,11 +8,11 @@ copies instead of O(n) large ones.
 
 Layout: LEAF = 64 values, MID = 64 x LEAF (4096 values), ROOT = 52 x MID (209010+ values, last short).
 """
-import struct, sys
+import os, struct, sys
 from pathlib import Path
 
-PLAY = Path.home() / "bigo-campaign" / "knausgard-cert"
-UP = PLAY / "upstream"
+PLAY = Path(__file__).resolve().parent.parent
+UP = Path(os.environ.get("KNAUSGARD_UPSTREAM", str(PLAY / "upstream")))
 OUT = PLAY / "bench"
 VALS = list(struct.unpack("<209010I", (UP / "certificate" / "kernel_lower.bin").read_bytes()))
 N = len(VALS)

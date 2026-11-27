@@ -6,7 +6,8 @@ upstream/
 *.c
 bench/olean/
 cert/*.olean
-lean-toolchain
+__pycache__/
+*.pyc
 # big benchmark inputs/probes (regenerate with tools/gen_bench.py)
 bench/probes/repD_100000.lean
 bench/probes/repB_0.lean

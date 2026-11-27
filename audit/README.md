@@ -2,8 +2,7 @@
 
 Read in this order: `AUDIT_REPORT.md` (verdict, findings, what was not checked) →
 `AXIOM_MAP.md` (the three axioms verbatim, with exact names and consumers) →
-`CERT_DESIGN.md` (certificate shape, the cost wall with arithmetic, effort) →
-`POST_DRAFT.md` (courtesy note to the author's repo — **not posted**).
+`CERT_DESIGN.md` (certificate shape, the cost wall with arithmetic, effort).
 
 Sources: paper text `knausgard.txt`; repository sources in `evidence/` (fetched 2026-11-07 from
 `github.com/kristianmk/839` — `lean/README.md`, the three `Local/RunAll.lean`, `Distinct839/Local/
@@ -23,4 +22,8 @@ table-access cost reduction can (⇒ ~28 min / ~6.3 h / ~4.4 h). Recommended fir
 measurement of real kernel read cost. All three: 4–7 months. riemann.fail is not the channel
 (2 MB one-file cap, unpatched pinned zeta23, his 14-file dependency patch required).
 
-Status: DRAFTS. Nothing posted, nothing public, no build run. HOME-durable workdir.
+Status: audit complete (2026-11-07), no Lean build run in the audit itself. The cost estimates
+above are the audit's pre-measurement projections; they were subsequently **measured and
+corrected** — the per-read floor is ~6 ms (not 1 µs), reads per accepted box are ≥15 190 (not 56),
+and a second, memory wall (~6 GB per box) was found. See `../BENCHMARK.md` and `../COVERAGE.md`
+for the measured numbers and the partial certificate they produced.
